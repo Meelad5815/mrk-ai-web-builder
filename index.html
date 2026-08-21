@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MRK AI Web Builder helps non-programmers build, modify, validate, and prepare web applications for GitHub and deployment with natural-language instructions."
+    />
+    <title>MRK AI Web Builder</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero__content">
+          <p class="eyebrow">MRK AI Web Builder</p>
+          <h1 id="page-title">Build production-ready websites from plain language.</h1>
+          <p class="hero__summary">A guided workspace for non-programmers to request website changes while the agent plans, edits, validates, commits, and prepares deployments safely.</p>
+          <div class="hero__actions" aria-label="Primary actions">
+            <a class="button button--primary" href="#chat-panel">Start with an instruction</a>
+            <a class="button button--ghost" href="#workflow">Review workflow</a>
+          </div>
+        </div>
+        <div class="status-card" aria-label="Current project status">
+          <span class="status-card__pulse"></span>
+          <strong>Project status</strong>
+          <p>Ready to inspect repositories, create safe branches, and prepare pull requests.</p>
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="Builder dashboard">
+        <article class="panel chat-panel" id="chat-panel">
+          <div class="panel__header"><span>Chat Panel</span><strong>Natural language command</strong></div>
+          <label for="instruction">Tell MRK what to build, fix, or improve.</label>
+          <textarea id="instruction" rows="7">Create a responsive landing page and wire it to GitHub safely.</textarea>
+          <div class="quick-prompts" aria-label="Example instructions">
+            <button class="chip chip--active" type="button">Create a modern Amazon affiliate store for computer accessories.</button>
+            <button class="chip" type="button">Homepage ko professional banao.</button>
+            <button class="chip" type="button">Fix the login error and validate the route.</button>
+            <button class="chip" type="button">Add dark mode with mobile-friendly navigation.</button>
+          </div>
+        </article>
+
+        <article class="panel project-panel">
+          <div class="panel__header"><span>Project Panel</span><strong>GitHub-safe context</strong></div>
+          <dl class="project-list">
+            <div><dt>GitHub account</dt><dd>OAuth / GitHub App only</dd></div>
+            <div><dt>Repository</dt><dd>Selected after authorization</dd></div>
+            <div><dt>Branch strategy</dt><dd>feature/&lt;short-description&gt;</dd></div>
+            <div><dt>Secrets</dt><dd>Server-side environment variables</dd></div>
+          </dl>
+        </article>
+
+        <article class="panel file-panel">
+          <div class="panel__header"><span>File Changes Panel</span><strong>Readable change summary</strong></div>
+          <ul class="change-list">
+            <li><span class="badge">Created</span><div><strong>index.html</strong><p>Responsive product interface for the MRK AI Web Builder experience.</p></div></li>
+            <li><span class="badge">Created</span><div><strong>src/styles.css</strong><p>Modern accessible layout, panels, states, and responsive behavior.</p></div></li>
+            <li><span class="badge">Created</span><div><strong>.env.example</strong><p>Documents required server-side configuration without secrets.</p></div></li>
+          </ul>
+        </article>
+
+        <article class="panel preview-panel">
+          <div class="panel__header"><span>Preview Panel</span><strong>Latest requested outcome</strong></div>
+          <div class="preview-window">
+            <div class="preview-window__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h2 id="preview-title">Create a responsive landing page and wire it to GitHub safely.</h2>
+            <p>MRK will inspect the repository, apply the smallest safe code changes, validate the result, and prepare a GitHub pull request for review.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="workflow" id="workflow" aria-labelledby="workflow-title">
+        <div><p class="eyebrow">Operating model</p><h2 id="workflow-title">Understand → Inspect → Plan → Implement → Validate → Commit → Deploy</h2></div>
+        <ol>
+          <li>Understand request</li><li>Inspect project</li><li>Plan changes</li><li>Implement safely</li><li>Validate build</li><li>Commit and open PR</li><li>Prepare deployment</li>
+        </ol>
+      </section>
+
+      <section class="guardrails" aria-labelledby="guardrails-title">
+        <div><p class="eyebrow">Safety rules</p><h2 id="guardrails-title">Built for secure website automation.</h2></div>
+        <ul>
+          <li>Never expose Gemini API keys, OAuth secrets, or database passwords.</li>
+          <li>Prefer OAuth or GitHub Apps instead of passwords or frontend personal access tokens.</li>
+          <li>Preserve existing functionality unless removal is explicitly requested.</li>
+          <li>Use branches and pull requests for significant changes.</li>
+        </ul>
+      </section>
+    </main>
+    <script src="/src/main.js" type="module"></script>
+  </body>
+</html>
