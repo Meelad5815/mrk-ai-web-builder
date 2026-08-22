@@ -1,65 +1,71 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "sqlite" url = env("DATABASE_URL") }
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
 
 model User {
-  id        String   @id @default(cuid())
-  githubId String   @unique
+  id        String    @id @default(cuid())
+  githubId  String    @unique
   login     String
   avatarUrl String?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   projects  Project[]
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  userId      String
-  owner       String
-  repo        String
+  id            String         @id @default(cuid())
+  userId        String
+  owner         String
+  repo          String
   defaultBranch String
-  projectType String?
-  createdAt   DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
-  sessions    AgentSession[]
+  projectType   String?
+  createdAt     DateTime       @default(now())
+  user          User           @relation(fields: [userId], references: [id])
+  sessions      AgentSession[]
 }
 
 model AgentSession {
-  id        String   @id @default(cuid())
-  projectId String
-  request   String
-  status    String
-  createdAt DateTime @default(now())
-  project   Project @relation(fields: [projectId], references: [id])
-  messages  ChatMessage[]
+  id         String        @id @default(cuid())
+  projectId  String
+  request    String
+  status     String
+  createdAt  DateTime      @default(now())
+  project    Project       @relation(fields: [projectId], references: [id])
+  messages   ChatMessage[]
   changeSets ChangeSet[]
 }
 
 model ChatMessage {
-  id        String @id @default(cuid())
+  id        String       @id @default(cuid())
   sessionId String
   role      String
   content   String
-  createdAt DateTime @default(now())
+  createdAt DateTime     @default(now())
   session   AgentSession @relation(fields: [sessionId], references: [id])
 }
 
 model ChangeSet {
-  id        String @id @default(cuid())
-  sessionId String
-  summary   String
-  status    String
+  id         String        @id @default(cuid())
+  sessionId  String
+  summary    String
+  status     String
   payload   String
-  createdAt DateTime @default(now())
-  session   AgentSession @relation(fields: [sessionId], references: [id])
-  commits   Commit[]
+  createdAt  DateTime      @default(now())
+  session    AgentSession  @relation(fields: [sessionId], references: [id])
+  commits    Commit[]
 }
 
 model Commit {
-  id          String @id @default(cuid())
+  id          String     @id @default(cuid())
   changeSetId String
   branch      String
   sha         String
   message     String
   url         String
-  createdAt   DateTime @default(now())
-  changeSet   ChangeSet @relation(fields: [changeSetId], references: [id])
+  createdAt   DateTime   @default(now())
+  changeSet   ChangeSet  @relation(fields: [changeSetId], references: [id])
 }
