@@ -1,3 +1,7 @@
+import { NextResponse } from 'next/server';
+
+export async function POST() {
+  return NextResponse.json({ error: 'Apply is intentionally gated until user approval and GitHub write credentials are connected.' }, { status: 501 });
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { Octokit } from 'octokit';
